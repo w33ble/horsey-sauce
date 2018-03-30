@@ -1,0 +1,25 @@
+import wd from 'wd';
+
+const SAUCE_URL = 'ondemand.saucelabs.com';
+const SAUCE_PORT = 80;
+
+export default function getBrowser(sauceUser, sauceKey, capabilities, tunnelId) {
+  // build the wd options based on capabilities and tunnelId
+  const options = {
+    ...capabilities,
+    'tunnel-identifier': tunnelId,
+  };
+
+  const browser = wd.remote(SAUCE_URL, SAUCE_PORT, sauceUser, sauceKey);
+
+  return new Promise((resolve, reject) => {
+    browser.init(options, err => {
+      if (err) {
+        reject(err);
+        return;
+      }
+
+      resolve(browser);
+    });
+  });
+}
