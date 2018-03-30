@@ -10,12 +10,8 @@ export default function getTunnel(user, key, tunnelId) {
 
   return new Promise((resolve, reject) =>
     sauceConnect(config, (err, sauceConnectProcess) => {
-      if (err) {
-        reject(err);
-        return;
-      }
-
-      resolve(sauceConnectProcess);
+      if (err) reject(err);
+      else resolve(sauceConnectProcess);
     })
   );
 }

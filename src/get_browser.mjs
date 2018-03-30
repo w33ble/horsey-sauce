@@ -5,10 +5,7 @@ const SAUCE_PORT = 80;
 
 export default function getBrowser(sauceUser, sauceKey, capabilities, tunnelId) {
   // build the wd options based on capabilities and tunnelId
-  const options = {
-    ...capabilities,
-    'tunnel-identifier': tunnelId,
-  };
+  const options = Object.assign({}, capabilities, { 'tunnel-identifier': tunnelId });
 
   const browser = wd.remote(SAUCE_URL, SAUCE_PORT, sauceUser, sauceKey);
 
