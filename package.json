@@ -1,0 +1,59 @@
+{
+  "name": "horsey-sauce",
+  "version": "0.0.0",
+  "description": "A SauceLabs Connect Runner",
+  "module": "index.mjs",
+  "scripts": {
+    "lint": "eslint *.js src/**/*.js",
+    "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov",
+    "test": "npm run lint && nyc ava",
+    "test:only": "ava",
+    "test:dev": "ava --watch",
+    "start": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/w33ble/horsey-sauce.git"
+  },
+  "keywords": [],
+  "author": "Joe Fleming (https://github.com/w33ble)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/w33ble/horsey-sauce/issues"
+  },
+  "homepage": "https://github.com/w33ble/horsey-sauce",
+  "lint-staged": {
+    "*.{js,json,css}": [
+      "prettier --write"
+    ]
+  },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "@std/esm": {
+    "cjs": true
+  },
+  "dependencies": {
+    "@std/esm": "^0.18.0",
+    "sauce-connect-launcher": "^1.2.3",
+    "uuid": "^3.2.1",
+    "wd": "^1.6.1"
+  },
+  "devDependencies": {
+    "ava": "^0.23.0",
+    "codecov": "^3.0.0",
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-prettier": "^2.3.1",
+    "eslint-plugin-react": "^7.1.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^6.0.0",
+    "nyc": "^11.2.1",
+    "prettier": "^1.9.0"
+  }
+}
