@@ -1,5 +1,5 @@
 import http from 'http';
-import serve from 'serve-script';
+import serve from '@w33ble/serve-script';
 
 function startServer(server, port) {
   return new Promise((resolve, reject) => {
