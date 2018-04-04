@@ -36,6 +36,7 @@ export default function openConnection(src, browser, options = {}) {
     .then(port => initRemote(port, browser))
     .then(
       () =>
+        // return a method to clean up connections
         function closeConnection() {
           return new Promise(resolve => {
             server.close(() => browser.quit(() => resolve()));

@@ -34,7 +34,6 @@ export default class HorseySauce extends events.EventEmitter {
 
         return getBrowser(this.sauceUser, this.sauceKey, capabilities, this.tunnelId).then(
           browser => {
-            this.isRunning = false;
             this.emit('browser-ready');
 
             // do things in the browser
@@ -43,6 +42,7 @@ export default class HorseySauce extends events.EventEmitter {
                 new Promise((resolve, reject) => {
                   this.emit('runner-start');
                   runner(browser, (err, data) => {
+                    this.isRunning = false;
                     closeConnection().then(() => {
                       if (err) {
                         this.emit('runner-error', err);
@@ -53,7 +53,12 @@ export default class HorseySauce extends events.EventEmitter {
                       }
                     });
                   });
-                })
+                }),
+              err => {
+                this.isRunning = false;
+                this.emit('connection-error', err);
+                throw err;
+              }
             );
           },
           err => {
@@ -64,6 +69,7 @@ export default class HorseySauce extends events.EventEmitter {
         );
       },
       err => {
+        this.isRunning = false;
         this.emit('tunnel-error', err);
         throw err;
       }
