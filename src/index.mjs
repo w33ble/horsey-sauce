@@ -1,9 +1,14 @@
 import events from 'events';
+import crypto from 'crypto';
 import getTunnel from './get_tunnel.mjs';
 import getBrowser from './get_browser.mjs';
 import openConnection from './open_connection.mjs';
 
-const randNum = len => parseInt(String(Math.random()).substr(2, len), 10);
+const randString = len =>
+  crypto
+    .randomBytes(Math.ceil(len / 2))
+    .toString('hex')
+    .slice(0, len);
 
 const getHelpers = browser => ({
   getConsoleOutput(cb) {
@@ -24,7 +29,7 @@ export default function createRunner(sauceUser, sauceKey) {
   const state = {
     isRunning: false,
     tunnel: null,
-    tunnelId: `horsey-sauce-${Date.now()}-${randNum(4)}-${randNum(6)}`,
+    tunnelId: `horsey-sauce-${Date.now()}-${randString(4)}-${randString(6)}`,
   };
 
   const onError = err => {
