@@ -1,6 +1,8 @@
 # horsey-sauce
 
-A SauceLabs Connect Runner.
+A Sauce Labs Connect Runner.
+
+![](logo.png)
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/w33ble/horsey-sauce/master/LICENSE)
 [![npm](https://img.shields.io/npm/v/horsey-sauce.svg)](https://www.npmjs.com/package/horsey-sauce)
@@ -44,10 +46,10 @@ function browserRunnerWithHelpers(browser, helpers, callback) {
   helpers.getConsoleOutput(cb);
 }
 
-const sauceCapabilities = { browserName: 'internet explorer' };
+const capabilities = { browserName: 'internet explorer' };
 
 // execute the runner
-runner.run(src, browserRunner, sauceCapabilities)
+runner.run(src, browserRunner, capabilities)
 .then(data => console.log(data))
 .catch(err => console.error(err));
 ```
@@ -98,3 +100,9 @@ runner-end | Called when the `exec` function calls the callback function. Only e
 #### License
 
 MIT © [w33ble](https://github.com/w33ble)
+
+#### Thanks
+
+Cross-browser Testing Platform and Open Source <3 Provided by [Sauce Labs](https://saucelabs.com)
+
+[![Testing Provided by Sauce Labs](sauce.png)](https://saucelabs.com/)
