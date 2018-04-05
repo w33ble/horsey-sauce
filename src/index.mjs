@@ -5,6 +5,20 @@ import openConnection from './open_connection.mjs';
 
 const randNum = len => parseInt(String(Math.random()).substr(2, len), 10);
 
+const getHelpers = browser => ({
+  getConsoleOutput(cb) {
+    browser.elementById('output', (err, el) => {
+      if (err) cb(err);
+      else {
+        el.text((err2, text) => {
+          if (err2) cb(err2);
+          else cb(null, text);
+        });
+      }
+    });
+  },
+});
+
 export default function createRunner(sauceUser, sauceKey) {
   const emitter = new events.EventEmitter();
   const state = {
@@ -66,7 +80,9 @@ export default function createRunner(sauceUser, sauceKey) {
                 });
               };
 
-              runner(browser, cb);
+              // pass helpers to runner if given 3 args
+              if (runner.length === 3) runner(browser, getHelpers(browser), cb);
+              else runner(browser, cb);
             });
           },
           err => onError(err, this)
