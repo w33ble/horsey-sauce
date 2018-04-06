@@ -36,13 +36,14 @@
   },
   "dependencies": {
     "@std/esm": "^0.18.0",
-    "sauce-connect-launcher": "^1.2.3",
     "@w33ble/serve-script": "^0.1.2",
+    "sauce-connect-launcher": "^1.2.3",
     "wd": "^1.6.1"
   },
   "devDependencies": {
     "ava": "^0.23.0",
     "codecov": "^3.0.0",
+    "dotenv": "^5.0.1",
     "eslint": "^4.9.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-prettier": "^2.9.0",
