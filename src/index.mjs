@@ -118,7 +118,7 @@ export default function createRunner(sauceUser, sauceKey) {
 
     close() {
       if (state.isRunning) return Promise.reject(new Error('Tests are still running'));
-      if (!state.tunnel) return Promise.reject(new Error('No tunnel created'));
+      if (!state.tunnel) return Promise.resolve();
 
       return new Promise(resolve =>
         state.tunnel.close(() => {
