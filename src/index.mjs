@@ -22,6 +22,18 @@ const getHelpers = browser => ({
       }
     });
   },
+
+  getUncaughtErrors(cb) {
+    browser.elementById('errors', (err, el) => {
+      if (err) cb(err);
+      else {
+        el.text((err2, text) => {
+          if (err2) cb(err2);
+          else cb(null, text);
+        });
+      }
+    });
+  },
 });
 
 export default function createRunner(sauceUser, sauceKey) {
