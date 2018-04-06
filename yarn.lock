@@ -48,9 +48,9 @@
   version "0.18.0"
   resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.18.0.tgz#e212b565c765f93b29ec522a493a192ce7ae2ba6"
 
-"@w33ble/serve-script@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@w33ble/serve-script/-/serve-script-0.1.2.tgz#60bd3efaae7f7268c567c15d38936afd80307a86"
+"@w33ble/serve-script@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@w33ble/serve-script/-/serve-script-0.2.0.tgz#baf8bb64cb2e611fbeaee9d18e8e25d6dce27861"
   dependencies:
     mri "^1.1.0"
 

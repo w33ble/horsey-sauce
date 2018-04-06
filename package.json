@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@std/esm": "^0.18.0",
-    "@w33ble/serve-script": "^0.1.2",
+    "@w33ble/serve-script": "^0.2.0",
     "sauce-connect-launcher": "^1.2.3",
     "wd": "^1.6.1"
   },
