@@ -45,8 +45,9 @@ describe('runner method', function slowTests() {
 
       const text = 'hello world';
       const src = `console.log('${text}')`;
+      const caps = { browserName: 'chrome' };
 
-      return runner.run(src, exec).then(output => {
+      return runner.run(src, exec, caps).then(output => {
         assert.equal(output, text);
       });
     });
@@ -56,7 +57,9 @@ describe('runner method', function slowTests() {
 
       const text = 'hello world';
       const src = `console.log('${text}')`;
-      return runner.run(src, execWithHelpers).then(output => {
+      const caps = { browserName: 'chrome' };
+
+      return runner.run(src, execWithHelpers, caps).then(output => {
         assert.equal(output, text);
       });
     });
