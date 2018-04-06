@@ -21,6 +21,11 @@
     "url": "https://github.com/w33ble/horsey-sauce/issues"
   },
   "homepage": "https://github.com/w33ble/horsey-sauce",
+  "files": [
+    "src/",
+    "index.js",
+    "index.mjs"
+  ],
   "lint-staged": {
     "*.{mjs,js,json,css}": [
       "prettier --write"
