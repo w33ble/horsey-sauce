@@ -82,8 +82,8 @@ export default function createRunner(sauceUser, sauceKey) {
           err => onError(err)
         )
         .then(
-          ({ closeConnection, browser }) => {
-            return new Promise((resolve, reject) => {
+          ({ closeConnection, browser }) =>
+            new Promise((resolve, reject) => {
               const cb = (err, data) => {
                 state.isRunning = false;
                 closeConnection().then(() => {
@@ -99,8 +99,7 @@ export default function createRunner(sauceUser, sauceKey) {
               // pass helpers to runner if given 3 args
               if (runner.length === 3) runner(browser, getHelpers(browser), cb);
               else runner(browser, cb);
-            });
-          },
+            }),
           err => onError(err)
         )
         .catch(err => onError(err)); // final failsafe for any failures
