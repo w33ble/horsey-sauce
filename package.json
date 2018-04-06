@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint *.js *.mjs \"src/**/*.js\" \"src/**/*.mjs\"",
     "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov",
-    "test": "npm run lint && npm run test:only",
+    "test": "npm run lint && nyc npm run test:only",
     "test:only": "mocha -r @std/esm test/index.mjs",
     "start": "node ."
   },
@@ -33,6 +33,12 @@
   },
   "@std/esm": {
     "cjs": true
+  },
+  "nyc": {
+    "extension": [
+      ".mjs",
+      ".js"
+    ]
   },
   "dependencies": {
     "@std/esm": "^0.18.0",
