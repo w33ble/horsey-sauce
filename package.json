@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/w33ble/horsey-sauce",
   "lint-staged": {
-    "*.{js,json,css}": [
+    "*.{mjs,js,json,css}": [
       "prettier --write"
     ]
   },
