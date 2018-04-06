@@ -55,7 +55,7 @@ export default function createRunner(sauceUser, sauceKey) {
         if (!state.tunnel) emitter.emit('tunnel-ready', state.tunnelId);
         state.tunnel = tunnel;
       },
-      err => onError(err, this)
+      err => onError(err)
     );
 
   return {
@@ -71,6 +71,7 @@ export default function createRunner(sauceUser, sauceKey) {
         .then(
           browser => {
             emitter.emit('browser-ready');
+            emitter.emit('runner-start');
 
             // do things in the browser
             return openConnection(src, browser).then(closeConnection => ({
@@ -78,12 +79,10 @@ export default function createRunner(sauceUser, sauceKey) {
               browser,
             }));
           },
-          err => onError(err, this)
+          err => onError(err)
         )
         .then(
           ({ closeConnection, browser }) => {
-            emitter.emit('runner-start');
-
             return new Promise((resolve, reject) => {
               const cb = (err, data) => {
                 state.isRunning = false;
@@ -102,13 +101,9 @@ export default function createRunner(sauceUser, sauceKey) {
               else runner(browser, cb);
             });
           },
-          err => onError(err, this)
+          err => onError(err)
         )
-        .catch(err => {
-          // final failsafe for any failures
-          state.running = false;
-          throw err;
-        });
+        .catch(err => onError(err)); // final failsafe for any failures
     },
 
     on(name, handler) {
