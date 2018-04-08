@@ -2,7 +2,7 @@ const dependencies = new Map();
 const mockPrefix = '%MOCK&';
 
 const validateName = name => {
-  if (typeof name !== 'string') throw new Error('Dependency name should be a string');
+  if (typeof name !== 'string') throw new Error('Dependency name must be a string');
 };
 const mockName = name => `${mockPrefix}${name}`;
 const originalName = name => name.replace(mockPrefix, '');
@@ -15,16 +15,18 @@ const restoreDependency = n => {
 };
 
 export function add(name, payload) {
+  if (dependencies.has(name)) throw new Error(`Dependency already defined: ${name}`);
   validateName(name);
   dependencies.set(name, payload);
 }
 
 export function get(name) {
+  if (!dependencies.has(name)) throw new Error(`Dependency not defined: ${name}`);
   return dependencies.get(name);
 }
 
 export function replace(name, payload) {
-  if (!dependencies.get(name)) throw new Error(`Can not replace undefined dependency: ${name}`);
+  if (!dependencies.has(name)) throw new Error(`Can not replace undefined dependency: ${name}`);
 
   // keep a copy of the original value
   const mName = mockName(name);
@@ -33,8 +35,8 @@ export function replace(name, payload) {
 }
 
 export function restore(name) {
-  validateName(name);
   if (name != null) {
+    validateName(name);
     restoreDependency(mockName(name));
     return;
   }
