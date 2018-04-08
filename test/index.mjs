@@ -1,2 +1,1 @@
-import './di';
-import './run';
+import './di.mjs';

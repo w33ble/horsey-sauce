@@ -6,8 +6,9 @@
   "scripts": {
     "lint": "eslint *.js *.mjs \"src/**/*.js\" \"src/**/*.mjs\"",
     "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov",
-    "test": "npm run lint && nyc npm run test:only",
-    "test:only": "mocha -r @std/esm test/index.mjs",
+    "test": "npm run lint && nyc npm run test:unit",
+    "test:unit": "mocha -r @std/esm test/index.mjs",
+    "test:runner": "mocha -r @std/esm test/runner.mjs",
     "start": "node ."
   },
   "repository": {
