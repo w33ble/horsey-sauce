@@ -8,32 +8,6 @@ const randString = len =>
     .toString('hex')
     .slice(0, len);
 
-const getHelpers = browser => ({
-  getConsoleOutput(cb) {
-    browser.elementById('output', (err, el) => {
-      if (err) cb(err);
-      else {
-        el.text((err2, text) => {
-          if (err2) cb(err2);
-          else cb(null, text);
-        });
-      }
-    });
-  },
-
-  getUncaughtErrors(cb) {
-    browser.elementById('errors', (err, el) => {
-      if (err) cb(err);
-      else {
-        el.text((err2, text) => {
-          if (err2) cb(err2);
-          else cb(null, text);
-        });
-      }
-    });
-  },
-});
-
 export default function createRunner(sauceUser, sauceKey) {
   const emitter = new events.EventEmitter();
   const state = {
@@ -47,16 +21,16 @@ export default function createRunner(sauceUser, sauceKey) {
     throw err;
   };
 
-  const getStateTunnel = () => {
-    const getTunnel = getDependency('getTunnel');
-    Promise.resolve(state.tunnel || getTunnel(sauceUser, sauceKey, state.tunnelId)).then(
+  const getTunnel = () =>
+    Promise.resolve(
+      state.tunnel || getDependency('getTunnel')(sauceUser, sauceKey, state.tunnelId)
+    ).then(
       tunnel => {
         if (!state.tunnel) emitter.emit('tunnel-ready', state.tunnelId);
         state.tunnel = tunnel;
       },
       err => onError(err)
     );
-  };
 
   return {
     run(src, runner, capabilities = {}) {
@@ -65,46 +39,25 @@ export default function createRunner(sauceUser, sauceKey) {
 
       const getBrowser = getDependency('getBrowser');
       const openConnection = getDependency('openConnection');
+      const runnerHelpers = getDependency('runnerHelpers');
+      const remoteExec = getDependency('remoteExec');
 
       state.isRunning = true;
 
       // create the sauce connect tunnel
-      return getStateTunnel()
+      return getTunnel()
         .then(() => getBrowser(sauceUser, sauceKey, capabilities, state.tunnelId))
-        .then(
-          browser => {
-            emitter.emit('browser-ready');
+        .then(browser => {
+          emitter.emit('browser-ready');
+          return openConnection(browser, src).then(closeConnection => {
             emitter.emit('runner-start');
-
-            // do things in the browser
-            return openConnection(src, browser).then(closeConnection => ({
-              closeConnection,
-              browser,
-            }));
-          },
-          err => onError(err)
-        )
-        .then(
-          ({ closeConnection, browser }) =>
-            new Promise((resolve, reject) => {
-              const cb = (err, data) => {
-                state.isRunning = false;
-                closeConnection().then(() => {
-                  if (err) {
-                    reject(err);
-                  } else {
-                    emitter.emit('runner-end', data);
-                    resolve(data);
-                  }
-                });
-              };
-
-              // pass helpers to runner if given 3 args
-              if (runner.length === 3) runner(browser, getHelpers(browser), cb);
-              else runner(browser, cb);
-            }),
-          err => onError(err)
-        )
+            return remoteExec(browser, runner, runnerHelpers, closeConnection).then(data => {
+              state.isRunning = false;
+              emitter.emit('runner-end', data);
+              return data;
+            });
+          });
+        })
         .catch(err => onError(err)); // final failsafe for any failures
     },
 

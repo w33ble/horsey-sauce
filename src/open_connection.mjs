@@ -1,11 +1,14 @@
 import http from 'http';
 import serve from '@w33ble/serve-script';
 
-function startServer(server, port) {
+function startServer(src, port) {
+  const app = serve({ src });
+  const server = http.createServer(app);
+
   return new Promise((resolve, reject) => {
     server.listen(port, err => {
       if (err) reject(err);
-      else resolve(server.address().port);
+      else resolve({ server, port: server.address().port });
     });
   });
 }
@@ -21,7 +24,7 @@ function initRemote(port, browser) {
   });
 }
 
-export default function openConnection(src, browser, options = {}) {
+export default function openConnection(browser, src, options = {}) {
   const config = Object.assign(
     {
       port: 8000,
@@ -29,12 +32,8 @@ export default function openConnection(src, browser, options = {}) {
     options
   );
 
-  const app = serve({ src });
-  const server = http.createServer(app);
-
-  return startServer(server, config.port)
-    .then(port => initRemote(port, browser))
-    .then(
+  return startServer(src, config.port).then(({ server, port }) =>
+    initRemote(port, browser).then(
       () =>
         // return a method to clean up connections
         function closeConnection() {
@@ -42,5 +41,6 @@ export default function openConnection(src, browser, options = {}) {
             server.close(() => browser.quit(() => resolve()));
           });
         }
-    );
+    )
+  );
 }
