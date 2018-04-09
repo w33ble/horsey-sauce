@@ -11,8 +11,12 @@ export default function remoteExec(browser, runner, runnerHelpers, closeConnecti
       });
     };
 
-    // pass helpers to runner if given 3 args
-    if (runner.length === 3) runner(browser, runnerHelpers(browser), cb);
-    else runner(browser, cb);
+    try {
+      // pass helpers to runner if given 3 args
+      if (runner.length === 3) runner(browser, runnerHelpers(browser), cb);
+      else runner(browser, cb);
+    } catch (e) {
+      reject(e);
+    }
   });
 }
