@@ -1,9 +1,8 @@
-import http from 'http';
-import serve from '@w33ble/serve-script';
+import { get as getDependency } from './di.mjs';
 
 function startServer(src, port) {
-  const app = serve({ src });
-  const server = http.createServer(app);
+  const app = getDependency('serveScript')({ src });
+  const server = getDependency('http').createServer(app);
 
   return new Promise((resolve, reject) => {
     server.listen(port, err => {

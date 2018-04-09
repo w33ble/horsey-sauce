@@ -1,3 +1,5 @@
+import http from 'http';
+import serveScript from '@w33ble/serve-script';
 import { add } from './di.mjs';
 import getTunnel from './get_tunnel.mjs';
 import getBrowser from './get_browser.mjs';
@@ -12,5 +14,7 @@ add('getBrowser', getBrowser);
 add('openConnection', openConnection);
 add('runnerHelpers', runnerHelpers);
 add('remoteExec', remoteExec);
+add('http', http);
+add('serveScript', serveScript);
 
 export default createRunner;
