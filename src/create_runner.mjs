@@ -1,6 +1,6 @@
 import events from 'events';
 import crypto from 'crypto';
-import { get as getDependency } from './di.mjs';
+import di from './di.mjs';
 
 const randString = len =>
   crypto
@@ -22,9 +22,7 @@ export default function createRunner(sauceUser, sauceKey) {
   };
 
   const getTunnel = () =>
-    Promise.resolve(
-      state.tunnel || getDependency('getTunnel')(sauceUser, sauceKey, state.tunnelId)
-    ).then(
+    Promise.resolve(state.tunnel || di.get('getTunnel')(sauceUser, sauceKey, state.tunnelId)).then(
       tunnel => {
         if (!state.tunnel) emitter.emit('tunnel-ready', state.tunnelId);
         state.tunnel = tunnel;
@@ -37,10 +35,10 @@ export default function createRunner(sauceUser, sauceKey) {
       // only allow one running process at a time
       if (state.isRunning) return Promise.reject(new Error('Another test is currently running'));
 
-      const getBrowser = getDependency('getBrowser');
-      const openConnection = getDependency('openConnection');
-      const runnerHelpers = getDependency('runnerHelpers');
-      const remoteExec = getDependency('remoteExec');
+      const getBrowser = di.get('getBrowser');
+      const openConnection = di.get('openConnection');
+      const runnerHelpers = di.get('runnerHelpers');
+      const remoteExec = di.get('remoteExec');
 
       state.isRunning = true;
 

@@ -2,7 +2,7 @@
 /* eslint no-underscore-dangle: 0 */
 import assert from 'assert';
 import openConnection from '../src/open_connection.mjs';
-import * as di from '../src/di.mjs';
+import di from '../src/di.mjs';
 import mockHttp, { getActiveServer } from './lib/mock_http.mjs';
 import createBrowser from './lib/mock_browser.mjs';
 

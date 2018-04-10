@@ -1,8 +1,8 @@
-import { get as getDependency } from './di.mjs';
+import di from './di.mjs';
 
 function startServer(src, port) {
-  const app = getDependency('serveScript')({ src });
-  const server = getDependency('http').createServer(app);
+  const app = di.get('serveScript')({ src });
+  const server = di.get('http').createServer(app);
 
   return new Promise((resolve, reject) => {
     server.listen(port, err => {

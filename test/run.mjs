@@ -1,7 +1,7 @@
 /* eslint-env node, mocha */
 import assert from 'assert';
 import createRunner from '../';
-import * as di from '../src/di.mjs';
+import di from '../src/di.mjs';
 import rejects from './lib/rejects.mjs';
 import createCallTracker from './lib/call_tracker.mjs';
 

@@ -514,6 +514,12 @@ camelcase@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-4.1.0.tgz#d545635be1e33c542649c69173e5de6acfae34dd"
 
+carafe@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/carafe/-/carafe-0.1.1.tgz#3d0fd7156fab51a92afd6ad8601c2b658038a2c0"
+  dependencies:
+    esm "^3.0.17"
+
 caseless@~0.11.0:
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.11.0.tgz#715b96ea9841593cc33067923f5ec60ebda4f7d7"
