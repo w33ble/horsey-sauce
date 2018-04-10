@@ -1,5 +1,5 @@
 import http from 'http';
-import serveScript from '@w33ble/serve-script';
+import wadsworth from 'wadsworth';
 import di from './di.mjs';
 import getTunnel from './get_tunnel.mjs';
 import getBrowser from './get_browser.mjs';
@@ -15,6 +15,6 @@ di.add('openConnection', openConnection);
 di.add('runnerHelpers', runnerHelpers);
 di.add('remoteExec', remoteExec);
 di.add('http', http);
-di.add('serveScript', serveScript);
+di.add('wadsworth', wadsworth);
 
 export default createRunner;

@@ -47,7 +47,7 @@
     ]
   },
   "dependencies": {
-    "@w33ble/serve-script": "^0.2.0",
+    "wadsworth": "^0.2.0",
     "carafe": "^0.1.1",
     "esm": "^3.0.17",
     "sauce-connect-launcher": "^1.2.3",

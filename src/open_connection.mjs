@@ -1,7 +1,7 @@
 import di from './di.mjs';
 
 function startServer(src, port) {
-  const app = di.get('serveScript')({ src });
+  const app = di.get('wadsworth')({ src });
   const server = di.get('http').createServer(app);
 
   return new Promise((resolve, reject) => {

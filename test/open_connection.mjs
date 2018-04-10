@@ -6,13 +6,13 @@ import di from '../src/di.mjs';
 import mockHttp, { getActiveServer } from './lib/mock_http.mjs';
 import createBrowser from './lib/mock_browser.mjs';
 
-const mockServeScript = () => Symbol('serve script');
+const mockWadsworth = () => Symbol('mock wadsworth');
 
 describe('open connection', () => {
   let mockBrowser;
 
   beforeEach(() => {
-    di.replace('serveScript', mockServeScript);
+    di.replace('wadsworth', mockWadsworth);
     di.replace('http', mockHttp);
     mockBrowser = createBrowser();
   });
