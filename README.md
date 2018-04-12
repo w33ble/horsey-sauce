@@ -26,10 +26,10 @@ const src = `
   console.log('typeof Object.assign:', typeof Object.assign);
 `;
 
-function browserRunner(browser, callback) {
+function browserRunner(browser, cb) {
   // this code runs in the node instance
   // browser is the webdriver instance
-  // when done, use callback(err, data)
+  // when done, use cb(err, data)
   // any console.log in the src will end up on the #output element in the DOM
 
   browser.elementById('output', function(err, el) {
