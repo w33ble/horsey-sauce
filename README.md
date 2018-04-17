@@ -31,6 +31,7 @@ function browserRunner(browser, cb) {
   // browser is the webdriver instance
   // when done, use cb(err, data)
   // any console.log in the src will end up on the #output element in the DOM
+  // any globally thrown errors will end up on the #errors element in the DOM
 
   browser.elementById('output', function(err, el) {
     if (err) cb(err);
@@ -45,7 +46,8 @@ function browserRunner(browser, cb) {
 
 // alternatively, you can use helper functions by using a middle arguments
 function browserRunnerWithHelpers(browser, helpers, callback) {
-  helpers.getConsoleOutput(cb);
+  helpers.getConsoleOutput(cb); // return console output
+  // helpers.getUncaughtErrors(cb); // return uncaught errors
 }
 
 const capabilities = { browserName: 'internet explorer' };
