@@ -8,7 +8,7 @@
     "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "test": "npm run lint && npm run test:unit",
-    "test:unit": "nyc --require esm mocha -r esm test/index.mjs",
+    "test:unit": "NODE_ENV=test nyc --require esm mocha -r esm test/index.mjs",
     "test:runner": "mocha -r esm test/runner.mjs",
     "start": "node ."
   },
@@ -48,7 +48,7 @@
     ]
   },
   "dependencies": {
-    "carafe": "^0.1.1",
+    "carafe": "^0.3.0",
     "esm": "^3.0.17",
     "sauce-connect-launcher": "^1.2.3",
     "wadsworth": "^0.2.0",

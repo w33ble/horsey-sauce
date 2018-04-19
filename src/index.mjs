@@ -9,12 +9,12 @@ import createRunner from './create_runner.mjs';
 import remoteExec from './remote_exec.mjs';
 
 // add dependencies to di service
-di.add('getTunnel', getTunnel);
-di.add('getBrowser', getBrowser);
-di.add('openConnection', openConnection);
-di.add('runnerHelpers', runnerHelpers);
-di.add('remoteExec', remoteExec);
-di.add('http', http);
-di.add('wadsworth', wadsworth);
+di.register('getTunnel', getTunnel);
+di.register('getBrowser', getBrowser);
+di.register('openConnection', openConnection);
+di.register('runnerHelpers', runnerHelpers);
+di.register('remoteExec', remoteExec);
+di.register('http', http);
+di.register('wadsworth', wadsworth);
 
 export default createRunner;
