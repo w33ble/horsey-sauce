@@ -1,4 +1,9 @@
+import http from 'http';
+import wadsworth from 'wadsworth';
 import di from './di.mjs';
+
+di.register('http', http);
+di.register('wadsworth', wadsworth);
 
 function startServer(src, port) {
   const app = di.get('wadsworth')({ src });
