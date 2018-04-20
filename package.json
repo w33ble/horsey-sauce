@@ -10,6 +10,7 @@
     "test": "npm run lint && npm run test:unit",
     "test:unit": "NODE_ENV=test nyc --require esm mocha -r esm test/index.mjs",
     "test:runner": "mocha -r esm test/runner.mjs",
+    "precommit": "lint-staged",
     "start": "node ."
   },
   "repository": {
@@ -29,9 +30,8 @@
     "index.mjs"
   ],
   "lint-staged": {
-    "*.{mjs,js,json,css}": [
-      "prettier --write"
-    ]
+    "*.{mjs,js}": ["eslint --fix"],
+    "*.{mjs,js,json,css}": ["prettier --write"]
   },
   "prettier": {
     "printWidth": 100,
