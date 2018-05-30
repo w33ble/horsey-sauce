@@ -30,8 +30,17 @@
     "index.mjs"
   ],
   "lint-staged": {
-    "*.{mjs,js}": ["eslint --fix"],
-    "*.{mjs,js,json,css}": ["prettier --write"]
+    "ignore": [
+      "package.json"
+    ],
+    "linters": {
+      "*.{js,mjs}": [
+        "eslint --fix"
+      ],
+      "*.{js,mjs,json,css}": [
+        "prettier --write"
+      ]
+    }
   },
   "prettier": {
     "printWidth": 100,
