@@ -59,7 +59,7 @@
   "dependencies": {
     "carafe": "^0.3.0",
     "esm": "^3.0.17",
-    "sauce-connect-launcher": "^1.2.3",
+    "sauce-connect-launcher": "^1.2.4",
     "wadsworth": "^0.2.0",
     "wd": "^1.6.1"
   },
