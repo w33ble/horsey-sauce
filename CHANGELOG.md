@@ -1,5 +1,7 @@
 ### Changelog
 
+#### [v0.1.2](https://github.com/w33ble/horsey-sauce/compare/v0.1.1...v0.1.2) (12 December 2018)
+
 #### [v0.1.1](https://github.com/w33ble/horsey-sauce/compare/v0.1.0...v0.1.1) (11 December 2018)
 - docs: add changelog [`d60db58`](https://github.com/w33ble/horsey-sauce/commit/d60db5884dd06be9c8afe8ae6de10e53784432eb)
 - fix: bump carafe version [`7ed7095`](https://github.com/w33ble/horsey-sauce/commit/7ed7095ef3b68b2175f70ac0fb964ed644f2ee4c)
