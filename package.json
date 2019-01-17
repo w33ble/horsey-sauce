@@ -58,7 +58,7 @@
   },
   "dependencies": {
     "carafe": "^0.3.0",
-    "esm": "3.0.22",
+    "esm": "3.1.0",
     "sauce-connect-launcher": "^1.2.4",
     "wadsworth": "^0.2.0",
     "wd": "^1.11.1"
