@@ -1,6 +1,6 @@
-import assert from 'assert';
+const assert = require('assert');
 
-export default (fn, expected) => {
+function rejects(fn, expected) {
   if (expected != null && typeof expected !== 'function' && !(expected instanceof RegExp)) {
     return Promise.reject(new Error('Assertion should be a RegExp or function instance'));
   }
@@ -21,4 +21,6 @@ export default (fn, expected) => {
         );
       }
     });
-};
+}
+
+module.exports = rejects;

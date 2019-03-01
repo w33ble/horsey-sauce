@@ -1,9 +1,8 @@
 /* eslint-env node, mocha */
 /* eslint no-underscore-dangle: 0 */
-import assert from 'assert';
-import runnerHelpers from '../src/runner_helpers.mjs';
-import createBrowser from './lib/mock_browser.mjs';
-
+const assert = require('assert');
+const runnerHelpers = require('../src/runner_helpers');
+const createBrowser = require('./lib/mock_browser');
 
 describe('runner helpers', () => {
   let mockBrowser;

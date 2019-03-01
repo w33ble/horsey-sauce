@@ -1,10 +1,10 @@
 /* eslint-env node, mocha */
 /* eslint no-underscore-dangle: 0 */
-import assert from 'assert';
-import openConnection from '../src/open_connection.mjs';
-import di from '../src/di.mjs';
-import mockHttp, { getActiveServer } from './lib/mock_http.mjs';
-import createBrowser from './lib/mock_browser.mjs';
+const assert = require('assert');
+const openConnection = require('../src/open_connection');
+const di = require('../src/di');
+const { mockHttp, getActiveServer } = require('./lib/mock_http');
+const createBrowser = require('./lib/mock_browser');
 
 const mockWadsworth = () => Symbol('mock wadsworth');
 
@@ -43,8 +43,8 @@ describe('open connection', () => {
   });
 
   describe('close connection', () => {
-    it('closes the server and browser instances', () => {
-      return openConnection(mockBrowser, '').then(closeConnection => {
+    it('closes the server and browser instances', () =>
+      openConnection(mockBrowser, '').then(closeConnection => {
         // server and browser should be active
         assert.equal(getActiveServer()._inspect().state, 'active');
         assert.equal(mockBrowser._inspect().state, 'active');
@@ -53,7 +53,6 @@ describe('open connection', () => {
           assert.equal(getActiveServer()._inspect().state, 'inactive');
           assert.equal(mockBrowser._inspect().state, 'inactive');
         });
-      });
-    });
+      }));
   });
 });

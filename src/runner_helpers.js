@@ -12,7 +12,7 @@ const getOutputById = (browser, elementId, cb) => {
   });
 };
 
-export default function getHelpers(browser) {
+function getHelpers(browser) {
   return {
     getConsoleOutput(cb) {
       getOutputById(browser, 'output', cb);
@@ -22,3 +22,5 @@ export default function getHelpers(browser) {
     },
   };
 }
+
+module.exports = getHelpers;

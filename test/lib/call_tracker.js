@@ -1,4 +1,4 @@
-export default function createCallTracker() {
+function createCallTracker() {
   function noop() {
     noop.callCount += 1;
   }
@@ -7,3 +7,5 @@ export default function createCallTracker() {
 
   return noop;
 }
+
+module.exports = createCallTracker;

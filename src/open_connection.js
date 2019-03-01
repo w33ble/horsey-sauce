@@ -1,6 +1,6 @@
-import http from 'http';
-import wadsworth from 'wadsworth';
-import di from './di.mjs';
+const http = require('http');
+const wadsworth = require('wadsworth');
+const di = require('./di');
 
 di.register('http', http);
 di.register('wadsworth', wadsworth);
@@ -28,7 +28,7 @@ function initRemote(port, browser) {
   });
 }
 
-export default function openConnection(browser, src, options = {}) {
+function openConnection(browser, src, options = {}) {
   const config = Object.assign(
     {
       port: 8000,
@@ -48,3 +48,5 @@ export default function openConnection(browser, src, options = {}) {
     )
   );
 }
+
+module.exports = openConnection;

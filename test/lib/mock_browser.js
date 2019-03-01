@@ -1,4 +1,4 @@
-export default function createBrowser() {
+function createBrowser() {
   let url;
   let state = 'active';
   let elementText = '';
@@ -32,3 +32,5 @@ export default function createBrowser() {
     },
   };
 }
+
+module.exports = createBrowser;

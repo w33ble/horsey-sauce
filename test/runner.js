@@ -1,7 +1,7 @@
 /* eslint-env node, mocha */
-import dotenv from 'dotenv';
-import assert from 'assert';
-import createRunner from '../';
+const dotenv = require('dotenv');
+const assert = require('assert');
+const createRunner = require('../');
 
 dotenv.config();
 
@@ -15,12 +15,12 @@ describe('runner method', function slowTests() {
     runner = createRunner(SAUCE_USER, SAUCE_KEY);
   });
 
-  after(() => {
+  after(() =>
     // this.timeout(0);
-    return runner.close().then(() => {
+    runner.close().then(() => {
       runner = null;
-    });
-  });
+    })
+  );
 
   describe('exec runner', () => {
     // helpers

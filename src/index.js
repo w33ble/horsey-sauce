@@ -1,11 +1,11 @@
-import events from 'events';
-import crypto from 'crypto';
-import di from './di.mjs';
-import getTunnelDep from './get_tunnel.mjs';
-import getBrowserDep from './get_browser.mjs';
-import openConnectionDep from './open_connection.mjs';
-import runnerHelpersDep from './runner_helpers.mjs';
-import remoteExecDep from './remote_exec.mjs';
+const events = require('events');
+const crypto = require('crypto');
+const di = require('./di');
+const getTunnelDep = require('./get_tunnel');
+const getBrowserDep = require('./get_browser');
+const openConnectionDep = require('./open_connection');
+const runnerHelpersDep = require('./runner_helpers');
+const remoteExecDep = require('./remote_exec');
 
 di.register('getTunnel', getTunnelDep);
 di.register('getBrowser', getBrowserDep);
@@ -19,7 +19,7 @@ const randString = len =>
     .toString('hex')
     .slice(0, len);
 
-export default function createRunner(sauceUser, sauceKey) {
+function createRunner(sauceUser, sauceKey) {
   const emitter = new events.EventEmitter();
   const state = {
     isRunning: false,
@@ -101,3 +101,5 @@ export default function createRunner(sauceUser, sauceKey) {
     },
   };
 }
+
+module.exports = createRunner;

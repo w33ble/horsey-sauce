@@ -1,6 +1,6 @@
-import sauceConnect from 'sauce-connect-launcher';
+const sauceConnect = require('sauce-connect-launcher');
 
-export default function getTunnel(user, key, tunnelId) {
+function getTunnel(user, key, tunnelId) {
   // see https://wiki.saucelabs.com/display/DOCS/Test+Configuration+Options#TestConfigurationOptions-RequiredAppiumTestConfigurationSettings
   const config = {
     username: user,
@@ -15,3 +15,5 @@ export default function getTunnel(user, key, tunnelId) {
     })
   );
 }
+
+module.exports = getTunnel;

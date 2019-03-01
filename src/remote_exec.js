@@ -1,4 +1,4 @@
-export default function remoteExec(browser, runner, runnerHelpers, closeConnection) {
+function remoteExec(browser, runner, runnerHelpers, closeConnection) {
   // do things in the browser
   return new Promise((resolve, reject) => {
     const cb = (err, data) => {
@@ -20,3 +20,5 @@ export default function remoteExec(browser, runner, runnerHelpers, closeConnecti
     }
   });
 }
+
+module.exports = remoteExec;

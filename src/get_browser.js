@@ -1,9 +1,9 @@
-import wd from 'wd';
+const wd = require('wd');
 
 const SAUCE_URL = 'ondemand.saucelabs.com';
 const SAUCE_PORT = 80;
 
-export default function getBrowser(sauceUser, sauceKey, capabilities, tunnelId) {
+function getBrowser(sauceUser, sauceKey, capabilities, tunnelId) {
   // build the wd options based on capabilities and tunnelId
   const options = Object.assign({}, capabilities, { 'tunnel-identifier': tunnelId });
 
@@ -20,3 +20,5 @@ export default function getBrowser(sauceUser, sauceKey, capabilities, tunnelId) 
     });
   });
 }
+
+module.exports = getBrowser;

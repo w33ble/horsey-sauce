@@ -1,9 +1,9 @@
 /* eslint-env node, mocha */
-import assert from 'assert';
-import createRunner from '../';
-import di from '../src/di.mjs';
-import rejects from './lib/rejects.mjs';
-import createCallTracker from './lib/call_tracker.mjs';
+const assert = require('assert');
+const createRunner = require('../');
+const di = require('../src/di');
+const rejects = require('./lib/rejects');
+const createCallTracker = require('./lib/call_tracker');
 
 const noop = () => {};
 

@@ -27,6 +27,7 @@ const mockHttp = {
   },
 };
 
-export default mockHttp;
+const getActiveServer = () => activeServer;
 
-export const getActiveServer = () => activeServer;
+exports.mockHttp = mockHttp;
+exports.getActiveServer = getActiveServer;
