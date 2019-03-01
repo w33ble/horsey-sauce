@@ -1,6 +1,6 @@
 {
   "name": "horsey-sauce",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "A SauceLabs Connect Runner",
   "main": "src/index.js",
   "scripts": {
